@@ -1,0 +1,19 @@
+<div class="container">
+    <form (ngSubmit)="onSubmit()" class="mt-4 p-4 border rounded shadow">
+      <div class="form-group">
+        <label for="name">Room Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="room.name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="capacity">Capacity:</label>
+        <input type="number" class="form-control" [(ngModel)]="room.capacity" name="capacity" required>
+      </div>
+      <div class="form-group">
+        <label for="amenities">Amenities:</label>
+        <input type="text" class="form-control" [(ngModel)]="room.amenities" name="amenities" required>
+      </div>
+      <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+      <button type="submit" class="btn btn-primary">Create Room</button>
+    </form>
+  </div>
+  

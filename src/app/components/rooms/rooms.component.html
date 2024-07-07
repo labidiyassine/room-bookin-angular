@@ -1,0 +1,37 @@
+<div class="container mt-4">
+    <h2>Room Listings</h2>
+    <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+    <div *ngIf="rooms.length === 0 && !errorMsg" class="alert alert-info">No rooms available</div>
+    <div class="row">
+      <div *ngFor="let room of rooms" class="col-md-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ room.name }}</h5>
+            <p class="card-text"><strong>Capacity:</strong> {{ room.capacity }}</p>
+            <p class="card-text"><strong>Amenities:</strong> {{ room.amenities }}</p>
+            <button class="btn btn-primary" (click)="selectRoom(room)">Update</button>
+            <button class="btn btn-danger ml-2" (click)="deleteRoom(room._id)">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div *ngIf="selectedRoom" class="container mt-4">
+    <h3>Update Room</h3>
+    <div class="form-group">
+      <label>Name:</label>
+      <input type="text" class="form-control" [(ngModel)]="selectedRoom.name">
+    </div>
+    <div class="form-group">
+      <label>Capacity:</label>
+      <input type="number" class="form-control" [(ngModel)]="selectedRoom.capacity">
+    </div>
+    <div class="form-group">
+      <label>Amenities:</label>
+      <input type="text" class="form-control" [(ngModel)]="selectedRoom.amenities">
+    </div>
+    <button class="btn btn-success" (click)="updateRoom()">Save Changes</button>
+    <button class="btn btn-secondary ml-2" (click)="selectedRoom = null">Cancel</button>
+  </div>
+  

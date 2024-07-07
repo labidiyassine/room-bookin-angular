@@ -1,0 +1,32 @@
+<div class="container">
+  <h2>Your Bookings</h2>
+  <div *ngIf="errorMsg" class="alert alert-danger">{{ errorMsg }}</div>
+  <div *ngFor="let booking of bookings">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ booking.room.name }}</h5>
+        <p class="card-text">{{ booking.date }} - {{ booking.startTime }} to {{ booking.endTime }}</p>
+        <button class="btn btn-primary" (click)="updateBooking(booking)">Update</button>
+        <button class="btn btn-danger ml-2" (click)="deleteBooking(booking._id)">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Example of creating a new booking -->
+  <form #newBookingForm="ngForm" class="container mt-4" (ngSubmit)="createBooking()">
+    <h3>Create Booking</h3>
+    <div class="form-group">
+      <label>Date:</label>
+      <input type="date" class="form-control" name="date" ngModel required>
+    </div>
+    <div class="form-group">
+      <label>Start Time:</label>
+      <input type="time" class="form-control" name="startTime" ngModel required>
+    </div>
+    <div class="form-group">
+      <label>End Time:</label>
+      <input type="time" class="form-control" name="endTime" ngModel required>
+    </div>
+    <button type="submit" class="btn btn-success">Create Booking</button>
+  </form>
+</div>
